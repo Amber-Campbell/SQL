@@ -1,0 +1,20 @@
+CREATE TABLE storeinventory (id INTEGER PRIMARY KEY, name TEXT, color TEXT, quantity INTEGER, SKU INTEGER); 
+INSERT INTO storeinventory VALUES (1, "shirt", "white", 3, 123);
+INSERT INTO storeinventory VALUES (2, "shirt", "black", 4, 124);
+INSERT INTO storeinventory VALUES (3, "shirt", "purple", 2, 125);
+INSERT INTO storeinventory VALUES (4, "shirt", "blue", 4, 126);
+INSERT INTO storeinventory VALUES (5, "pants", "white", 3, 201);
+INSERT INTO storeinventory VALUES (6, "pants", "black", 7, 202);
+INSERT INTO storeinventory VALUES (7, "pants", "purple", 1, 204);
+INSERT INTO storeinventory VALUES (8, "pants", "blue", 2, 205);
+INSERT INTO storeinventory VALUES (9, "socks", "white", 4, 331);
+INSERT INTO storeinventory VALUES (10, "socks", "black", 4, 332);
+INSERT INTO storeinventory VALUES (11, "socks", "purple", 5, 333);
+INSERT INTO storeinventory VALUES (12, "socks", "blue", 6, 334);
+INSERT INTO storeinventory VALUES (13, "shoes", "white", 3, 401);
+INSERT INTO storeinventory VALUES (14, "shoes", "black", 2, 402);
+INSERT INTO storeinventory VALUES (15, "shoes", "purple", 1, 403);
+INSERT INTO storeinventory VALUES (16, "shoes", "blue", 4, 404);
+SELECT * FROM storeinventory;
+SELECT name, SUM(quantity) FROM storeinventory GROUP BY name;
+SELECT color, SUM(quantity) FROM storeinventory GROUP BY color
