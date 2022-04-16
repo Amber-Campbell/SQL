@@ -1,0 +1,60 @@
+/* Create table about the people and what they do here
+This SQL project demonstrates the use of JOIN Commands
+*/
+CREATE TABLE star_bio (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    gender TEXT,
+    mar_status TEXT,
+    times_married INTEGER);
+    
+INSERT INTO star_bio VALUES (1, "Brad Pitt", "Male", "Divorced", 2);
+INSERT INTO star_bio VALUES (2, "Tom Hanks", "Male", "Married", 2);
+INSERT INTO star_bio VALUES (3, "Will Smith", "Male", "Married", 2);
+INSERT INTO star_bio VALUES (4, "Angelina Jolie", "Female", "Divorced", 3);
+INSERT INTO star_bio VALUES (5, "Goldie Hawn", "Female", "Partner", 2);
+INSERT INTO star_bio VALUES (6, "Kurt Russell", "Male", "Partner", 1); 
+INSERT INTO star_bio VALUES (8, "Jada Pinkett Smith", "Female", "Married", 1);
+
+CREATE TABLE star_films (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    movie TEXT);
+    
+INSERT INTO star_films VALUES (1, 1, "Fight Club");
+INSERT INTO star_films VALUES (2, 1, "Seven Years in Tibet");
+INSERT INTO star_films VALUES (3, 2, "Castaway");
+INSERT INTO star_films VALUES (4, 2, "Forrest Gump");
+INSERT INTO star_films VALUES (5, 2, "Saving Private Ryan");
+INSERT INTO star_films VALUES (6, 3, "Independence Day");
+INSERT INTO star_films VALUES (7, 3, "Wild Wild West");
+INSERT INTO star_films VALUES (8, 3, "Bad Boys");
+INSERT INTO star_films VALUES (9, 4, "Wanted");
+INSERT INTO star_films VALUES (10, 4, "Maleficent"); 
+INSERT INTO star_films VALUES (11, 5, "Overboard");
+INSERT INTO star_films VALUES (12, 6, "Guardians of the Galaxy II");
+INSERT INTO star_films VALUES (13, 6, "Escape from LA");
+INSERT INTO star_films VALUES (14, 7, "The Matrix Reloaded");
+    
+CREATE TABLE star_couples (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person1_id INTEGER,
+    person2_id INTEGER);
+    
+INSERT INTO star_couples VALUES (1, 1, 4);
+INSERT INTO star_couples VALUES (2, 6, 5);
+INSERT INTO star_couples VALUES (3, 3, 7);
+
+SELECT * FROM star_bio;
+SELECT * FROM star_films;
+SELECT * FROM star_couples;
+
+SELECT star_bio.fullname as "Actor", Star_films.movie as "Film" FROM star_bio
+    JOIN star_films
+    ON star_films.person_id = star_bio.id;
+
+SELECT a.fullname as "Husband", b.fullname as "Wife" FROM star_couples
+    JOIN star_bio a
+    ON star_couples.person1_id = a.id
+    JOIN star_bio b
+    ON star_couples.person2_id = b.id
