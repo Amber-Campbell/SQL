@@ -1,0 +1,25 @@
+SELECT * FROM BIT_DB.JanSales LIMIT 20;
+
+SELECT Count(orderID) FROM BIT_DB.JanSales;
+
+SELECT Count(orderID) FROM BIT_DB.JanSales
+WHERE Product = "iPhone";
+
+SELECT acctnum FROM BIT_DB.customers as "cust"
+INNER JOIN BIT_DB.FebSales as "Feb"
+ON cust.order_id = Feb.orderID;
+
+SELECT distinct product, price FROM BIT_DB.JanSales 
+WHERE price in (SELECT MIN(price) FROM BIT_DB.JanSales);
+
+SELECT product, SUM(price*quantity) as "revenue" FROM BIT_DB.JanSales
+GROUP BY product;
+
+SELECT product, SUM(quantity) as "quantity", SUM(price*quantity) as "revenue" FROM BIT_DB.FebSales
+WHERE location = "548 Lincoln St, Seattle, WA 98101"
+GROUP BY product;
+
+SELECT COUNT(cust.acctnum) as "Customer Qty", AVG(quantity)*price as "Avg Spent" FROM BIT_DB.FebSales Feb
+LEFT JOIN BIT_DB.customers cust
+ON cust.order_id = Feb.orderID
+WHERE Feb.Quantity>2;
