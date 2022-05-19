@@ -42,3 +42,25 @@ WHERE Price like '%.99';
 SELECT Product, SUM(Quantity) FROM BIT_DB.FebSales
 WHERE location like '%Los Angeles%'
 GROUP BY Product;
+
+SELECT distinct location, COUNT(orderID) FROM BIT_DB.JanSales
+WHERE location like '%NY%'
+GROUP BY location
+HAVING COUNT(orderID)> 2;
+
+SELECT Product, SUM(quantity) as quantity FROM BIT_DB.FebSales
+WHERE Product like '%Headphones%'
+GROUP BY Product;
+
+SELECT SUM(Price*Quantity)/COUNT(cust.acctnum) as "avg amount spent" FROM BIT_DB.FebSales Feb
+LEFT JOIN BIT_DB.customers cust
+ON Feb.orderID = cust.order_id;
+
+SELECT SUM(Quantity)/count(cust.acctnum) as "avg quantity" FROM BIT_DB.FebSales Feb
+LEFT JOIN BIT_DB.customers cust
+ON Feb.orderID = cust.order_id;
+
+SELECT Product, SUM(Price*Quantity) Revenue FROM BIT_DB.JanSales
+GROUP BY Product
+ORDER BY SUM(Price*Quantity) desc
+LIMIT 1;
